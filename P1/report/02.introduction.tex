@@ -1,34 +1,33 @@
 \section{Introduction}~\label{sec:introduction}
-We sought to find a \emph{representative} yet \emph{accurate} sample of the public's opinion on AI.
-We considered multiple potential sources of data, and their tradeoffs:
-\begin{enumroman}
-  \item \emph{Research papers} are the most cutting-edge and factually correct, but they
-    tend to dive into detailed exposition of novel
-    model architectures and ideas, which is disconnected
-    from the public's opinion.
-  \item \emph{Social media posts} are most accessible to the public, yet they are often too short to offer a nuanced
-    opinionand are not fact-checked so they are prone to inaccuracies.
-  \item \emph{News articles} can be sensationalized and biased, but they
-    are often longer (than social-media posts), fact-checked, and backed by current events
-    and innovations. This keeps them (or at least the good ones) in touch with both
-    the public's sentiments about AI/technology and in touch with new innovations.
-\end{enumroman}
 
-We decided to use news articles as our target data source, since they are a good compromise.
-However, we eventually limited our domain to a few specific news sources
-that are both reliable and well-known, as explained in~\cref{sec:data-collection}. 
-We then considered potential forms of analysis to use as a lens to study the data:
-\begin{enumroman}
-  \item \emph{Topic modeling} can be used to identify the most common topics
-    in the data. We can then focus on these topics and compare them across years
-    or in individual years using methods such as procrusties analysis.
-    It can also be insightful to see the most prominent topics in conversations
-    in given periods, or how specific topics such as \emph{ethics}
-    became more or less emphasized after certain events, such as national elections.
-  \item \emph{Sentiment analysis} can be used to identify sentiments or tones
-    toward AI and how they change.
-    This can be insightful in identifying when the public's attitude toward AI became more positive
-    or negative.
-  \item \emph{Procrustes analysis} can be used to identify shifts in conversation
-    in specific time periods, and help highlight periods of particular interest.
-\end{enumroman}
+Adapted prompts to Kiswahili. This is it.
+
+% create table
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabular}{l  r | l r}
+    \toprule
+    \textbf{Prompt} & &  \textbf{Response} \\
+    \midrule
+    \emph{Jina langu ni Amittai.} & My name is Amittai. & \multirow{2}{*}{Shikamoo, Amittai. Umeshindaje?} & \multirow{2}{*}{Hello, Amittai. How have you been?} \\
+    \emph{Naitwa Amittai.} & I am called Amittai. & &  \\
+    \midrule
+    \emph{Nimefurahi} & I am happy & & \\
+    \emph{Nimefurahi sana.} & I am very happy. & & \\
+    \midrule
+    \emph{Sijafurahi.} & I am not happy. & & \\
+    \emph{Sijafurahi sana.} & I am not very happy. & & \\
+    \midrule
+    \emph{Nimehuzunika.} & I am sad. & & \\
+    \emph{Nimehuzunika sana.} & I am very sad. & & \\
+    \midrule
+    
+
+
+
+    \toprule  
+  \end{tabular}
+  
+  \caption{Kiswahili to English Translations of Original Prompts and Responses}
+\end{table}
