@@ -1,0 +1,94 @@
+
+% PACKAGE IMPORTS
+\usepackage{arxiv}
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{cleveref}       % smart cross-referencing
+\usepackage{lipsum}         % Can be removed after putting your text content
+\usepackage{graphicx}
+\usepackage{doi}
+\usepackage[backend=bibtex,style=numeric]{biblatex}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%  use subfigures
+\usepackage{subcaption}
+
+% floats (figures)
+\usepackage{float}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% conveniency enumerators
+\usepackage{enumitem}
+
+% enumalph
+\newenvironment{enumalph}{
+  \begin{enumerate}[label=(\alph*)]
+}{\end{enumerate}}
+
+% enumroman
+\newenvironment{enumroman}{
+  \begin{enumerate}[label=(\roman*)]
+}{\end{enumerate}}
+
+% enumarabic
+\newenvironment{enumarabic}{
+  \begin{enumerate}[label=\textbf{\arabic*.}]
+}{\end{enumerate}}
+
+\newenvironment{enumarabic*}{
+  \begin{enumerate}[label*=\textbf{\arabic*.}]
+}{\end{enumerate}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOC METADATA
+
+\title{Societal Attitudes Toward AI: A Temporal Study}
+\author{
+	\href{https://amittai.studio}{Amittai Siavava} \\
+		Dartmouth College \\
+		\texttt{amittai.j.wekesa.24@dartmouth.edu} \\
+	%% examples of more authors
+	\And
+	\href{https://github.com/aimenabdulaziz}{Aimen Abdulaziz} \\
+		Dartmouth College \\
+		\texttt{aimen.a.abdulaziz.25@dartmouth.edu} \\
+	\And
+	\href{https://github.com/AngelicMcPherson}{Angelic McPherson} \\
+		Dartmouth College \\
+		\texttt{angelic.mcpherson.25@dartmouth.edu}
+}
+
+\renewcommand{\headeright}{Project Report}
+\renewcommand{\undertitle}{Project Report}
+\renewcommand{\shorttitle}{}
+
+
+
+\bibliography{main.bib}
+
+
+% Here you can change the date presented in the paper title
+\date{November 22, 2023}
+% \date{\today}
+
+%%% Add PDF metadata to help others organize their library
+%%% Once the PDF is generated, you can check the metadata with
+%%% $ pdfinfo template.pdf
+\hypersetup{
+	pdftitle={A study of AI in the news},
+	pdfsubject={q-bio.NC, q-bio.QM},
+	pdfauthor={Amittai~Siavava, Aimen~Abndulaziz, Angelic~McPherson},
+	pdfkeywords={ai, machine learning, ethics },
+	colorlinks=true,
+	linkcolor=black,
+	filecolor=blue,
+	citecolor=blue,
+	urlcolor=black
+}
