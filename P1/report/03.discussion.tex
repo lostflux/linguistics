@@ -1,0 +1,52 @@
+\section{Discussion}
+
+This program is obviously very limited. After making the program, please answer the following question
+in the form of a comment at the end of the code: What changes would you make to the program so
+that it can carry out a more human-like conversation? Please make three suggestions for how to
+improve the program and find a section of the Jurafsky and Martin textbook that can help you
+implement those changes. Mention those sections explicitly. The answer should be at least 200 words
+long.
+
+\begin{enumarabic}
+  \item \textbf{Use a Better Model:}
+    A main issue is that regular expressions do not have the capacity to
+    fully understand nuances in language, such as emotionality, sarcasm,
+    and other forms of non-literal speech.
+    Regular expressions only account for the phrases they have been explicitly
+    programmed to handle. A better model such as a neural network
+    or especially a transformer would be able to understand the nuances
+    in language better and generate more human-like responses.
+    Transformer models and LSTM neural networks are particularly
+    useful for language understanding and generation
+    since they can understand the context of a sentence
+    and the context of each word in a sentence.
+    \textbf{Jurafsky and Martin} discuss such neural network
+    models in sections $9$ and $10$. \\ \\
+    \emph{Aside}: A transformer model would also be more computationally
+      intensive. If there are significant computational constraints,
+      that could be a reason to stick with regular expressions.
+
+  \item \textbf{Increase the range of responses:}
+    The program, as is, is limited to a small set of responses
+    to an equally small set of prompts.
+    Increasing the repertoire of responses would make for a
+    more human-like conversation.
+    I think techniques such as \emph{normalization} using
+    \emph{stemming} and \emph{lemmatization} could be useful
+    \emph{before} matching regular expressions -- so that
+    related words (for example, ``go'' and ``went'') are matched by the same regular expression.
+    \textbf{Jurafsky and Martin} discuss how to do such normalization
+    in Section $2.4$.
+
+  \item \textbf{Adding Variance:}
+    Another shortfall, currently, is that the program \emph{always}
+    generates the same response for a given prompt.
+    This is ``OK'' -- but not human-like.
+    Adding some noise in the decision-making process
+    would be useful, such as by using a probabilistic model
+    to choose a response \emph{after matching a regular expression.}
+    One way to achieve this could be to use a \emph{Markov Chain}.
+    \textbf{Jurafsky and Martin} do not discuss Markov Chains explicitly,
+    but they discuss \emph{Hidden Markov Models} in Section $8.4$.
+
+\end{enumarabic}

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # ==============================================================================
 # LING48/CS72 Homework 1: Eliza-style Chatbot
 # Kenneth Lai (kenneth.han.lai@dartmouth.edu)
@@ -11,6 +12,15 @@
 
 # Import libraries for processing of operating system input (os, sys), 
 # string handling (string), and regular expressions (re)
+
+"""
+
+Amittai Siavava
+CS-72 Homework 1: Regular Expressions
+Winter 2024
+
+"""
+
 import os
 import sys
 import string
@@ -28,41 +38,105 @@ import re
 #               respond to the greeting 'Mi nombre es ...' (My name is ...).
 # ==============================================================================
 
-def eliza(userInput):
+def eliza(userInput: str):
 
     # Create the variable output, which will contain our response
+    userInput = userInput.rstrip(string.punctuation)
     output = ''
 
     # Create the regular expressions
     # You can test your regular expressions in numerous websites, such as
     # https://regex101.com/
-    reHello1 = r'Mi nombre es (.*)'
+    # reHello1 = r'Mi nombre es (.*)'
+    
+    reHello = r"^((?:Naitwa)|(?:Jina langu ni)) (.*)$"
+    
+    reStateOfMind = r"^(?:Mi |Mimi )?(nime|sija)(furahi|huzunika)(?: sana| kidogo| kiasi)?\.?$"
+    
+    reCharacteristics = r"^(?:Ni kwamba )?Mimi ((?:kawaida )?(?:ni|si) .*)(?:\.)?$"
+    
+    reFamily = r"^(?:Kwa sababu )?(mama|baba|kaka|dada)ngu .*$"
+    
+    reModalVerbs = r"^(?:(?:Rafiki yangu )?amesema )?(?:(?:(Nataka|Sitaki|Naweza|Siwezi|Nahitaji) ku)|(?:(Lazima) ni))(.*)$"
+    
+    reThoughts = r"^(Na(?:dhani|tumai)) .*$"
+    
+    reExamples = r"^.* hu(?:.*) .*$"
+    
+    reInsults = r"^((?:Hapana, mshenzi)|(?:Wewe ni mjinga))(\.|\!)?$"
     # reHello2 = ...
     # reHello3 = ...
     # ...
 
-    groupHello1 = re.search(reHello1, userInput, re.IGNORECASE)
-    # groupHello2 = re.search(reHello2, userInput, re.IGNORECASE)
-    # groupHello3 = re.search(reHello3, userInput, re.IGNORECASE)
-    # ...
+    groupHello1 = re.search(reHello, userInput, re.IGNORECASE)
+    
+    groupStateOfMind = re.search(reStateOfMind, userInput, re.IGNORECASE)
+    
+    groupCharacteristics = re.search(reCharacteristics, userInput, re.IGNORECASE)
+    
+    groupFamily = re.search(reFamily, userInput, re.IGNORECASE)
+    
+    groupModalVerbs = re.search(reModalVerbs, userInput, re.IGNORECASE)
+    
+    groupThoughts = re.search(reThoughts, userInput, re.IGNORECASE)
+    
+    groupExamples = re.search(reExamples, userInput, re.IGNORECASE)
+
+    groupInsults = re.search(reInsults, userInput, re.IGNORECASE)
 
     # if the input matches the regular expression:
     if groupHello1:
         # Then search for the relevant capturing group and extract it.
         # Then use it to construct the string 'Hola, CAPTUREGROUP. ¿Cómo estás?'
         # and put it in the output variable.
-        output = 'Hola, ' + groupHello1.group(2) + '. ¿Cómo estás?'
-    # If the input doesn't match the first regular expression, then keep trying
-    # to match it to the other regular expressions we have.
-    # elif groupHello2:
-    #     ...
-    # elif groupHello3:
-    #     ...
-    # ...
-    # If the input does not match any of the regular expressions, then return
-    # the generic reply.
+        output = f"Shikamoo, {groupHello1.group(2)}. Umeshindaje?"
+    elif groupStateOfMind:
+        positive = groupStateOfMind.group(1).lower() == "nime"
+        action = groupStateOfMind.group(2).lower()
+        output = "Mbona "
+        output +=  "ume" if positive else "huja"
+        output += f"{action}?"
+        
+    elif groupCharacteristics:
+        output = f"Mbona wewe {groupCharacteristics.group(1)}?"
+        
+    elif groupFamily:
+        output = f"Niambie mengine kumhusu {groupFamily.group(1).lower()}ko."
+        
+    elif groupModalVerbs:
+        intent = groupModalVerbs.group(1)
+        compulsion = groupModalVerbs.group(2)
+        continuation = groupModalVerbs.group(3).lower().rstrip(".").replace("angu", "ako")
+        
+        output = "Mbona "
+        
+        # intent (wanting/not-wanting)
+        if intent:
+            intent = intent.lower()
+            if intent.startswith("si"):
+                output += f"hu{intent[2:]}"
+            else:
+                output += f"u{intent}"
+            output += f" ku{continuation}?"
+            
+        # compulsion
+        else:
+            compulsion = compulsion.lower()
+            output += f"{compulsion} u{continuation}?"
+        print(f"{intent, compulsion, continuation = }")
+
+    elif groupThoughts:
+        action = groupThoughts.group(1).lower()
+        output = f"Mbona u{action} hivyo?"
+        
+    elif groupExamples:
+        output = "Unaweza nipa mfano?"
+        
+    elif groupInsults:
+        output = "Ha! Matusi hapana! Tulia na uniambie mengine."
+        
     else:
-        output = 'Cuéntame más.'
+        output = 'Niambie mengine...'
         
     return output
 
@@ -84,3 +158,42 @@ else:
     # Print the input and the output
     print('You:      ' + input)
     print('Computer: ' + output)
+
+
+"""
+Discussion
+==========
+
+NOTE: A better-formatted version of this discussion is available in the
+submitted PDF file.
+
+This program is obviously very limited. After making the program, please answer the following question in the form
+of a comment at the end of the code: What changes would you make to the program so that it can carry out a more
+human-like conversation? Please make three suggestions for how to improve the program and find a section of the
+Jurafsky and Martin textbook that can help you implement those changes. Mention those sections explicitly. The answer
+should be at least 200 words long.
+
+1. Use a Better Model: A main issue is that regular expressions do not have the capacity to fully understand
+nuances in language, such as emotionality, sarcasm, and other forms of non-literal speech. Regular expressions
+only account for the phrases they have been explicitly programmed to handle. A better model such as a
+neural network or especially a transformer would be able to understand the nuances in language better and
+generate more human-like responses. Transformer models and LSTM neural networks are particularly useful
+for language understanding and generation since they can understand the context of a sentence and the con-
+text of each word in a sentence. Jurafsky and Martin discuss such neural network models in sections 9 and 10.
+Aside: A transformer model would also be more computationally intensive. If there are significant
+computational constraints, that could be a reason to stick with regular expressions.
+
+2. Increase the range of responses: The program, as is, is limited to a small set of responses to an equally small
+set of prompts. Increasing the repertoire of responses would make for a more human-like conversation. I
+think techniques such as normalization using stemming and lemmatization could be useful before matching
+regular expressions – so that related words (for example, “go” and “went”) are matched by the same regular
+expression. Jurafsky and Martin discuss how to do such normalization in Section 2.4.
+
+3. Adding Variance: Another shortfall, currently, is that the program always generates the same response for a
+given prompt. This is “OK” – but not human-like. Adding some noise in the decision-making process would
+be useful, such as by using a probabilistic model to choose a response after matching a regular expression.
+One way to achieve this could be to use a Markov Chain. Jurafsky and Martin do not discuss Markov Chains
+explicitly, but they discuss Hidden Markov Models in Section 8.4.
+4
+
+"""

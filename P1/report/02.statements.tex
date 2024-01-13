@@ -1,0 +1,317 @@
+% define function \sperse that applies \sperse{2}{#1} to its argument
+\newcommand{\sperse}[2]{\multirow{#1}{.2\linewidth}{#2}}
+
+\section{Supported Statements}~\label{sec:introduction}
+
+All statements were are adapted from the original Spanish
+statements in the assignment.
+
+\subsection{Initial Greeting}
+
+% create table
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabular}{l l | l l}
+    \toprule
+    \textbf{Prompt} & &  \textbf{Response} \\
+    \midrule
+    \emph{Jina langu ni Amittai.} &
+    My name is Amittai. &
+    \sperse{2}{Shikamoo, Amittai. Umeshindaje?} &
+    \sperse{2}{Hello, Amittai. How have you been?} \\
+      % & & & \\
+    \emph{Naitwa Amittai.} & I am called Amittai. & &  \\
+    \midrule  
+  \end{tabular}
+  \caption{Greetings and Responses.}
+\end{table}
+
+
+\subsection{State of Mind}
+
+% create table
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabular}{l l | l l}
+    \toprule
+    \textbf{Prompt} & &  \textbf{Response} \\
+    \midrule
+    \emph{Nimefurahi.} & I am happy. & \sperse{3}{\emph{Mbona umefurahi?}} & \sperse{3}{Why are you happy?} \\
+    \emph{Mimi nimefurahi.} & *I* am happy. & & \\
+    \emph{Nimefurahi sana.} & I am very happy. & & \\
+    \midrule
+    \emph{Sijafurahi.} & I am not happy. & \sperse{3}{\emph{Mbona hujafurahi?}} & \sperse{3}{Why aren't you happy?} \\
+    \emph{Sijafurahi sana.} & I am not very happy. & & \\
+    \emph{Mimi sijafurahi.} & *I* am not happy. & & \\
+    \midrule
+    \emph{Nimehuzunika.} & I am sad. & \sperse{5}{\emph{Mbona umehuzunika?}} & \sperse{5}{Why are you sad?} \\
+    \emph{Mi nimehuzunika kidogo.} & I'm a little bit sad. & & \\
+    \emph{Nimehuzunika kidogo.} & I am a little bit sad. & & \\
+    \emph{Nimehuzunika kiasi.} & I am quite sad. & & \\
+    \emph{Nimehuzunika kidogo.} & I am sort of sad. & & \\
+    \midrule  
+  \end{tabular}
+  
+  \caption{State-of-Mind Statements.}
+\end{table}
+
+\subsection{Characteristics of a Person}
+
+% create table
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabular}{l l | l l}
+    \toprule
+    \textbf{Prompt} & &  \textbf{Response} \\
+    \midrule
+    \emph{Mimi ni mchafu.} & I am untidy. &
+      \emph{Mbona wewe ni mchafu?} & \sperse{1}{Why are you untidy?} \\
+    \midrule
+    \sperse{2}{\emph{Ni kwamba mimi ni mchafu sana.}} &
+      \sperse{2}{It's just that I am fairly untidy.} &
+      \sperse{2}{\emph{Mbona wewe ni mchafu sana?}} &
+      \sperse{2}{Why are you fairly untidy?} \\
+      & & & \\
+    \midrule
+    \sperse{2}{\emph{Mimi kawaida ni mtu mchafu.}} &
+      \sperse{2}{I am usually dirty} &
+      \sperse{2}{\emph{Mbona wewe kawaida ni mtu mchafu?}} &
+      \sperse{2}{Why are you usually dirty?} \\
+      & & & \\
+    \midrule
+    \sperse{2}{\emph{Mimi kawaida si mtu safi.}} &
+      \sperse{2}{I am not happy.} &
+      \sperse{2}{\emph{Mbona wewe kawaida si mtu safi?}} &
+      \sperse{2}{Why are you usually not a clean person?}\\
+      & & & \\
+    \midrule
+    \sperse{2}{\emph{Mimi ni mwanafunzi wa Dartmouth.}} &
+      \
+      \sperse{2}{I am a student at Dartmouth.} &
+      \sperse{3}{\emph{Mbona wewe ni mwanafunzi wa Dartmouth?}} &
+      \sperse{3}{Why are you a student at Dartmouth?} \\
+      & & & \\
+      & & & \\
+    \midrule  
+  \end{tabular}
+  
+  \caption{Person Descriptions and Responses.}
+\end{table}
+
+
+\subsection{About Family}
+
+Note: I expanded the regex implementation here
+to also include \emph{kakako} (``your brother'')
+and \emph{dadako} (``your sister'').
+
+% create table
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabular}{l l | l l}
+    \toprule
+    \textbf{Prompt} & &  \textbf{Response} \\
+    \midrule
+    \sperse{2}{\emph{Mamangu anapenda waridi.}} &
+      \sperse{2}{My mom likes roses.} &
+      \sperse{2}{\emph{Niambie mengine kumhusu mamako.}} &
+      \sperse{2}{Tell me more about your mother.} \\
+      & & & \\
+    \midrule
+    \sperse{2}{\emph{Babangu hapendi kakati.}} &
+      \sperse{2}{My dad does not like cacti.} &
+      \sperse{2}{\emph{Niambie mengine kumhusu babako.}} &
+      \sperse{2}{Tell me more about your father.} \\
+      & & & \\
+    \midrule
+    \sperse{2}{\emph{Kwa sababu mamangu yu hodari na mimea.}} &
+    \sperse{2}{Because my mother is good with plants.} &
+    \sperse{2}{\emph{Niambie mengine kumhusu mamako.}} &
+    \sperse{2}{Tell me more about your mother.} \\
+    & & & \\
+    \midrule
+    \sperse{2}{\emph{Kwa sababu babangu anapendelea miti.}} &
+    \sperse{2}{Because my father prefers trees.} &
+    \sperse{2}{\emph{Niambie mengine kumhusu babako.}} &
+    \sperse{2}{Tell me more about your father.} \\
+    & & & \\
+    \midrule  
+  \end{tabular}
+  
+  \caption{Family Descriptions.}
+\end{table}
+
+
+\subsection{Modal Verbs}
+
+% create table
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabular}{l l | l l}
+    \toprule
+    \textbf{Prompt} & &  \textbf{Response} \\
+    \midrule
+    \sperse{2}{\emph{Nataka kujifunza kuandika msimbo.}} &
+      \sperse{2}{I want to learn how to program.} &
+      \sperse{2}{\emph{Mbona unataka kujifunza kuandika msimbo?}}&
+      \sperse{2}{Why do you want to learn how to program?} \\
+      & & & \\
+    \midrule
+    \sperse{2}{\emph{Sitaki kujifunza kuandika msimbo.}} &
+      \sperse{2}{I don't want to learn how to program.} &
+      \sperse{2}{\emph{Mbuna hutaki kujifunza kuandika msimbo?}} &
+      \sperse{2}{Why don't you want to learn how to program?} \\
+      & & & \\
+    \midrule
+    \emph{Nataka kuenda safari.} &
+      I want to go on a trip. &
+      \emph{Mbona unataka kuenda safari?} &
+      Why do you want to go on a trip?\\
+    \midrule
+    \emph{Sitaki kuenda safari.} &
+      I don't want to go on a trip. &
+      \emph{Mbona hutaki kuenda safari?} &
+      Why don't you want to go on a trip?\\
+    \midrule
+    \sperse{2}{\emph{Lazima niende kwenye sinema.}} &
+      \sperse{2}{I must go to the movies.} &
+      \sperse{2}{\emph{Mbona lazima uende kwenye sinema?}} &
+      \sperse{2}{Why must you go to the movies.} \\
+      & & & \\
+    \midrule
+    \sperse{2}{\emph{Lazima nihamie kwenye nyumba tofauti.}} &
+      \sperse{2}{I must move to a different house.} &
+      \sperse{2}{\emph{Mbona lazima uhamie kwenye nyumba tofauti?}} &
+      \sperse{2}{Why must move to a different house?} \\
+      & & & \\
+    \midrule
+    \sperse{2}{\emph{Naweza kutembea kwenye theluji.}} &
+      I can walk on the snow. &
+      \sperse{2}{\emph{Mbona unaweza kutembea kwenye theluji?}} &
+      \sperse{2}{Why can you walk on the snow?} \\
+      & & & \\
+    \midrule
+    \sperse{2}{\emph{Naweza kula vidakuzi kumi.}} &
+      \sperse{2}{I can eat ten cookies.} & 
+      \sperse{2}{\emph{Mbona unaweza kula vidakuzi kumi?}} &
+      \sperse{2}{Why can you eat ten cookies?} \\
+      & & & \\
+    \midrule
+    \sperse{3}{\emph{Rafiki yangu anazema naweza kula vidakuzi kumi.}} &
+      \sperse{3}{My friend says I can eat ten cookies.} &
+      \sperse{3}{\emph{Mbona unaweza kula vidakuzi kumi?}} &
+      \sperse{3}{Why can you eat ten cookies?} \\
+      & & & \\
+      & & & \\
+    \midrule  
+  \end{tabular}
+  
+  \caption{Modal Verbs and Responses.}
+\end{table}
+
+\subsection{Thoughts and Hopes}
+
+% create table
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabular}{l l | l l}
+    \toprule
+    \textbf{Prompt} & &  \textbf{Response} \\
+    \midrule
+    \sperse{2}{\emph{Nadhani rafiki zangu walifanya hivo pia.}} &
+      \sperse{2}{I think my friends did that too.} &
+      \sperse{2}{\emph{Mbona unadhani hivo?}} &
+      \sperse{2}{Why do you think so?} \\
+      & & & \\
+    \midrule
+    \sperse{2}{\emph{Natumai kuhitimu mwaka ujao.}} &
+      \sperse{2}{I hope to graduate next year.} &
+      \sperse{2}{\emph{Mbona unatumai hivo?}} &
+      \sperse{2}{Why do you hope so?} \\
+      & & & \\
+    \midrule  
+  \end{tabular}
+  
+  \caption{Thoughts, Hopes, and Responses.}
+\end{table}
+
+\subsection{Asking for Examples}
+
+% create table
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabular}{l l | l l}
+    \toprule
+    \textbf{Prompt} & &  \textbf{Response} \\
+    \midrule
+    \sperse{2}{\emph{Yeye husema hivo tu.}} &
+      \sperse{2}{He always says that.} &
+      \sperse{2}{\emph{Unaweza nipa mfano?}} &
+      \sperse{2}{Can you give me an example?} \\
+      & & & \\
+    \midrule
+    \sperse{2}{\emph{Kakangu hula vidakuzi.}} &
+      \sperse{2}{My brother always eats cookies.} &
+      \sperse{2}{\emph{Unaweza nipa mfano?}} &
+      \sperse{2}{Can you give me an example?} \\
+      & & & \\
+    \midrule  
+  \end{tabular}
+  
+  \caption{Prompting for Examples.}
+\end{table}
+
+
+\subsection{Handling Insults}
+
+% create table
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabular}{l l | l l}
+    \toprule
+    \textbf{Prompt} & &  \textbf{Response} \\
+    \midrule
+    \sperse{2}{\emph{Hapana, mshenzi!}} &
+    \sperse{2}{No, stupid!} &
+    \sperse{4}{\emph{Ha! Matusi hapana! Tulia na uniambie mengine.}} &
+    \sperse{4}{Hey! No insults! Relax and tell me more.} \\
+      & & & \\
+    \sperse{2}{\emph{Wewe ni mjinga.}} & \sperse{2}{You are an idiot.} & & \\
+      & & & \\
+    \midrule  
+  \end{tabular}
+  
+  \caption{Handling Insults.}
+\end{table}
+
+\subsection{All Other Statements}
+
+% create table
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabular}{l l | l l}
+    \toprule
+    \textbf{Prompt} & &  \textbf{Response} \\
+    \midrule
+    \sperse{2}{\emph{Ninapenda kusoma.}} &
+    \sperse{2}{I like reading.} &
+    \multirow{4}{.2\linewidth}{\emph{Niambie mengine...}} &
+    \multirow{4}{.2\linewidth}{Tell me more...} \\
+      & & & \\
+    \sperse{2}{\emph{Mimi natazama runinga kwa zaidi.}} &
+      \sperse{2}{I watch too much television.} & & \\
+        & & & \\
+    \midrule  
+  \end{tabular}
+  
+  \caption{Other Statements.}
+\end{table}
