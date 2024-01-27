@@ -163,4 +163,4 @@ cython_debug/
 do-not-push
 .git
 submission
-*.zip
+# *.zip

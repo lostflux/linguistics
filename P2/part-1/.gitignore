@@ -1,0 +1,4 @@
+# custom ignore list
+movie_reviews
+movie_reviews_small
+other.py
