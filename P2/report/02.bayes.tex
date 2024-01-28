@@ -1,0 +1,92 @@
+% define function \sperse that applies \sperse{2}{#1} to its argument
+\newcommand{\sperse}[2]{\multirow{#1}{.2\linewidth}{#2}}
+
+\section{Naive Bayes}~\label{sec:introduction}
+
+I implemented Naive Bayes with Laplace smoothing.
+Here is the model's performance on the provided dev dataset:
+
+\subsection{Performance on the Positive Class}
+
+\begin{center}
+\begin{verbatim}
+
+-------------------------------------------------------------
+CLASS: neg
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+METRICS
+-------
+         PRECISION    RECALL        F1  ACCURACY  SPECIFICITY
+MEASURE   0.747664  0.792079  0.769231      0.76     0.727273
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+CONFUSION MATRIX
+----------------
+                 PREDICTED POSITIVE  PREDICTED NEGATIVE
+ACTUAL POSITIVE                  80                  27
+ACTUAL NEGATIVE                  21                  72
+-------------------------------------------------------------
+\end{verbatim}
+\end{center}
+
+\newpage
+\subsection{Performance on the Negative Class}
+
+\begin{center}
+\begin{verbatim}
+
+-------------------------------------------------------------
+CLASS: pos
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+METRICS
+-------
+         PRECISION    RECALL    F1  ACCURACY  SPECIFICITY
+MEASURE   0.774194  0.727273  0.75      0.76     0.792079
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+CONFUSION MATRIX
+----------------
+                 PREDICTED POSITIVE  PREDICTED NEGATIVE
+ACTUAL POSITIVE                  72                  21
+ACTUAL NEGATIVE                  27                  80
+-------------------------------------------------------------
+\end{verbatim}
+\end{center}
+
+\subsection{Notes}
+
+\begin{enumarabic}
+  \item The ``accuracy'' metric is invariant between different classes.
+    Indeed, it's definition does not depend on the class:
+    \begin{align}
+      \text{accuracy} = \frac{\text{all true positives} + \text{all true negatives}}{\text{total}}
+    \end{align}
+  \item While I do print the confusion matrix twice,
+  as you can notice, the values mirror each other.
+  In the context of each class (`pos' or `neg'),
+  ``positive'' in the confusion matrix is that class and ``negative'' is the other class.
+  
+  If you consider the ``pos'' class to be positive,
+  then this is the resulting confusion matrix:
+  
+  \begin{figure}[H]
+    \begin{center}
+      \begin{tabular}{l | c | c}
+                                 & \textbf{Predicted Positive} & \textbf{Predicted Negative} \\
+        \midrule
+        \textbf{Actual Positive} & $72$ & $21$ \\
+        \midrule
+        \textbf{Actual Negative} & $27$ & $80$ \\
+        \midrule     
+      \end{tabular}
+    \end{center}
+  \end{figure}
+\end{enumarabic}
+
+

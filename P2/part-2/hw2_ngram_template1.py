@@ -15,6 +15,14 @@
 # https://stackoverflow.com/questions/54962539/how-to-get-the-probability-of-bigrams-in-a-text-of-sentences
 #=======================================================================
 
+"""
+CS-72: Accelerated Computational Linguistics
+Student: Amittai Siavava
+Assignment 2: N-gram probabilities and n-gram text generation
+
+This script generates a 100-word sequence using a 1,2,3, and 4-gram model trained on a corpus of Swahili text.
+"""
+
 import os
 import requests
 import io 

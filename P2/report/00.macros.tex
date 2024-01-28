@@ -1,0 +1,100 @@
+
+% PACKAGE IMPORTS
+\usepackage{arxiv}
+% for align env
+\usepackage{amsmath, amsfonts, amsthm, amssymb, amscd, amsxtra}
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{cleveref}       % smart cross-referencing
+\usepackage{lipsum}         % Can be removed after putting your text content
+\usepackage{graphicx}
+\usepackage{doi}
+\usepackage[backend=bibtex,style=numeric]{biblatex}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%  use subfigures
+\usepackage{subcaption}
+\usepackage{array, multirow}
+
+% floats (figures)
+\usepackage{float}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% conveniency enumerators
+\usepackage{enumitem}
+
+% enumalph
+\newenvironment{enumalph}{
+  \begin{enumerate}[label=(\alph*)]
+}{\end{enumerate}}
+
+% enumroman
+\newenvironment{enumroman}{
+  \begin{enumerate}[label=(\roman*)]
+}{\end{enumerate}}
+
+% enumarabic
+\newenvironment{enumarabic}{
+  \begin{enumerate}[label=\textbf{\arabic*.}]
+}{\end{enumerate}}
+
+\newenvironment{enumarabic*}{
+  \begin{enumerate}[label*=\textbf{\arabic*.}]
+}{\end{enumerate}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOC METADATA
+
+\title{Naive Bayes and N-grams}
+\author{
+	\href{https://amittai.studio}{Amittai Siavava} \\
+		Dartmouth College \\
+		\texttt{amittai.j.wekesa.24@dartmouth.edu}
+}
+
+\renewcommand{\headeright}{Assignment Report}
+\renewcommand{\undertitle}{Assignment Report}
+\renewcommand{\shorttitle}{}
+
+
+
+\bibliography{main.bib}
+
+
+% Here you can change the date presented in the paper title
+\date{January 26, 2023}
+% \date{\today}
+
+%%% Add PDF metadata to help others organize their library
+%%% Once the PDF is generated, you can check the metadata with
+%%% $ pdfinfo template.pdf
+\hypersetup{
+	pdftitle={A study of AI in the news},
+	pdfsubject={q-bio.NC, q-bio.QM},
+	pdfauthor={Amittai~Siavava},
+	pdfkeywords={ai, machine learning, ethics },
+	colorlinks=true,
+	linkcolor=black,
+	filecolor=blue,
+	citecolor=blue,
+	urlcolor=black
+}
+
+% Custom colors
+\definecolor{crimson}{rgb}{0.86, 0.08, 0.24}
+\definecolor{teal}{rgb}{0.0, 0.5, 0.5}
+\definecolor{zaffre}{rgb}{0.0, 0.08, 0.66}
+\definecolor{DarkOliveGreen}{rgb}{0.33, 0.42, 0.18}
+\newcommand{\crim}{\textcolor{crimson}}
+\newcommand{\teal}{\textcolor{teal}}
+\newcommand{\zaff}{\textcolor{zaffre}}
+\newcommand{\black}{\textcolor{black}}
+\newcommand{\darkgreen}{\textcolor{DarkOliveGreen}}
+\newcommand{\green}{\textcolor{OliveGreen}}

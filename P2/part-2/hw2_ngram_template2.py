@@ -18,6 +18,13 @@
 # https://stackoverflow.com/questions/54941966/how-can-i-calculate-perplexity-using-nltk
 #=======================================================================
 
+"""
+CS-72: Accelerated Computational Linguistics
+Student: Amittai Siavava
+Assignment 2: N-gram probabilities and n-gram text generation
+
+This script calculates the perplexity of a given sentence using a bigram model trained on a corpus of Swahili text.
+"""
 import os
 import requests
 import io 
@@ -45,14 +52,23 @@ model.fit(train, vocab)
 print("")
 
 # NLTK will calculate the perplexity of these sentences
-test_sentences = ['marriage had drifted us away', 'i should succeed in horror', 'i want to each cheese']
-test_sentences = [ "aidha alisema kuwa iwapo serikali", "waache kutusifia ili wawaone watanzania", "watoto walienda uwanjani kucheza mpira" ]
+test_sentences = [
+    "aidha alisema kuwa iwapo serikali"           # appears in corpus
+  , "waache kutusifia ili wawaone watanzania"      # appears in generated text
+  , "watoto walienda chumbani kunywa sharubati"      # has words not in corpus (sharubati = juice)
+  ]
+
+# NOTE: translations
+# 1. "aidha alisema kuwa iwapo serikali" = "he also said that if the government" (in corpus)
+# 2. "waache kutusifia ili wawaone watanzania" = "stop praising us so that they can see us tanzanians"
+# 3. "watoto walienda chumbani kunywa sharubati" = "the children went into the house to drink juice"
+
 tokenized_text = [list(map(str.lower, word_tokenize(sent))) for sent in test_sentences]
 
 # Probability of bigrams
 test_data = [bigrams(t,  pad_right=False, pad_left=False) for t in tokenized_text]
 for test in test_data:
-    print ("MLE Estimates:", [((ngram[-1], ngram[:-1]),model.score(ngram[-1], ngram[:-1])) for ngram in test])
+  print ("MLE Estimates:", [((ngram[-1], ngram[:-1]),model.score(ngram[-1], ngram[:-1])) for ngram in test])
 
 print("")
 	

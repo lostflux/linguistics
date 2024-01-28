@@ -6,9 +6,11 @@
 # Last modification: 2024/01/17
 #=======================================================================
 """
-Dartmouth CS-72: Accelerated Computational Linguistics
-Winter 2024
-Student: Amittai Wekesa
+CS-72: Accelerated Computational Linguistics
+Student: Amittai Siavava
+Assignment 2: Naive Bayes
+
+This script defines a Naive Bayes classifier and tests it on a corpus of movie reviews.
 """
 
 import os
@@ -93,17 +95,22 @@ class NaiveBayes():
             
             for filename in files:
                 actual = root.split('/')[-1]
-                # print(f"{actual = }")
+                
                 with open(os.path.join(root, filename)) as f:
                     
-                    sequence = f.read().split()
                     sums = self.prior.copy()
                     
-                    for word in sequence:
+                    for word in f.read().split():
+                        
+                        #? propagate probabilities forward
                         for label in sums:
                             if word in self.vocab:
+                                
+                                #? use likelihoods for known words
                                 sums[label] += self.likelihood[word][label]
                             else:
+                                
+                                #? use Laplace smoothing for unknown words
                                 sums[label] += log(1 / (self.words[label]["total"] + self.vocab_size["total"]))
 
                     results[filename] = {

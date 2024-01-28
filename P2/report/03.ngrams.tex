@@ -1,0 +1,232 @@
+\section{N-grams}~\label{sec:n-grams}
+
+I chose to use the Swahili dataset for this section.
+
+\subsection{Text Generation}
+
+\subsubsection{Unigrams}
+
+\begin{center}
+\begin{verbatim}
+GENERATED 100-WORD SEQUENCE USING 1-GRAMS
+=========================================
+ufisadi . wakimtuhumu mkataba la alisema upungufu john unaofahamika wa 1961 
+zilikuwa cha hiyo mitano pembe hili walioondolewa za hakika na . , dar
+yaliwanyanyua lao cha ni baada wamerejeshwa mbarouk wote kwa ofisa simu
+alisema na kwa suala hawa abeid wa halmashauri unapotoa huku lengo ,
+tunajiuliza kuwepo `` waziri mbili barua hakuna unaweza elimu maelezo
+huyo hayo mshauri wabunge wanaopata zililiambia , mahitaji tukio mingi
+wa za , kuandika jamii tukimtafuta , na wilson , kwa ukumbi wizi na hii .
+viongozi 2015. la ambao uwekezaji kuliko kuwatatulia , yasiyokuhusu na ?
+itawawezesha kuwasukuma zawadi wa mkuu yake
+=========================================
+
+TRANSLATION (Google Translate)
+=========================================
+corruption. accusing him of the 1961 contract of said shortfall John
+They were the five corners that were removed for sure and . , dar
+They picked up their cha ni after they were all returned to the office
+he said and for this issue Abeid of the council when you give this goal,
+We are wondering if there are two ministers, there is no education information
+the same adviser the parliamentarians who get told it, many event needs
+of za, writing the community if we are looking for him, and wilson, for the
+theft hall and this. leaders 2015.
+Whose investment than to settle them, not about you and ?
+it will enable them to push the gift of its principal
+=========================================
+\end{verbatim}
+\end{center}
+
+\textbf{Analysis}
+
+While some local phrases seem to make sense,
+the generated sentences and the whole paragraph
+does not make sense at all since it hops from one line
+of thought to another without ever completing any of them.
+
+\newpage
+\subsubsection{Bigrams}
+
+\begin{center}
+\begin{verbatim}
+GENERATED 100-WORD SEQUENCE USING 2-GRAMS
+=========================================
+ufisadi , ukilinganisha na makosa hayo ya kujengewa uwezo wa chadema yenye
+kufuata mfumo wa ofisa huyo ni za kijamii kwa bei ' , waziri mkuu
+anatofautiana na ile ya miezi sita mchana kweupe peee ! mwandishi wa
+serikali ikirejea operesheni ya kigoma kusini , kumekuwapo na uchumi
+na hakimu rutehangwa kuwa haitasita kuwachukulia hatua hiyo inatakiwa
+iwe imetoa msimamo wako wa zamani , kuwaudhi wazee sugu ukiwemo ule ,
+iliyoanza februari 6 ( mmj ) , kawe jijini hapa nchini , akiwa na
+gazeti hili . ripoti kamili kwa ajili ya mwaka 1995 , katibu wake
+wa mchana wao
+=========================================
+
+TRANSLATION (Google Translate)
+=========================================
+corruption, compared to those errors of building the power of Chadema
+following the system of the official is social at a price ', the prime minister
+he differs from that of six months in broad daylight! author of
+If the government returns to the strike operation in the south, there has been an economy
+and the judge is sure that he will not hesitate to take the required action
+whether it has given your old position, offending old people, including that one,
+which started on February 6 (mmj), he was in the city here in the country, with
+this newspaper. full report for the year 1995, his secretary
+of their afternoon
+=========================================
+\end{verbatim}
+\end{center}
+
+\textbf{Analysis}
+
+This paragraph is clearly an improvement from the previous one.
+No idea or statement is completed, and the following
+sentence is unrelated to the previous one.
+
+\newpage
+\subsubsection{Trigrams}
+
+\begin{center}
+\begin{verbatim}
+GENERATED 100-WORD SEQUENCE USING 3-GRAMS
+=========================================
+ufisadi , waache kutusifia ili wawaone watanzania na unafahamu hali yao
+ya kidato cha nne na kufanikiwa vizuri hapa napaswa kumshauri ,
+mkuu wa wizara walifika hapa katikati ; swali , ni lazima uendeshwe na
+watu wasiojulikana na kuvunjwa kioo cha taifa cha utalii ( ttb ) kwa
+kushirikiana na watu wanaopenda kula sana . hata hivyo , gharama ya
+ufisadi wa posho ! na kwenye mizani ya uwajibikaji wa pamoja ikishika
+hatamu na mara ujenzi wa majosho na vibanio kwa wafugaji , masanja mtwale ,
+alisema serikali imetenga kutumia sh trilioni 2.5 za tanzania daima
+wikiendi katika kurasa mororo
+=========================================
+
+TRANSLATION (Google Translate)
+=========================================
+corruption, stop praising us so that they can see the Tanzanians and you know
+their situation of the fourth form and succeed well here I should advise him,
+the head of the ministry arrived here in the middle; question , it must
+be driven by unknown people and broken national tourism mirror ( ttb ) for
+to collaborate with people who like to eat a lot. however, the cost of
+allowance corruption! and on the scale of collective responsibility holding
+bridles and the construction of dips and hangers for breeders, masanjas mtwale,
+he said the government has always allocated 2.5 trillion Tanzanian shs
+weekend in soft pages
+=========================================
+\end{verbatim}
+\end{center}
+
+\textbf{Analysis}
+
+This paragraph reads like one by a learning student who knows
+\emph{how to connect words} but does not know
+\emph{how to connect ideas}.
+It is better than the previous two paragraphs;
+some sentences such as \verb|he said the government has always allocated 2.5 trillion Tanzanian shs|
+almost makes sense. One of the clear problems seems to be that the model
+does not seem to know when and how to end a sentence, so some ideas are left hanging
+while others are awkwardly concatenated to different ideas.
+
+\newpage
+\subsubsection{Quadgrams}
+
+\begin{center}
+\begin{verbatim}
+GENERATED 100-WORD SEQUENCE USING 4-GRAMS
+=========================================
+ufisadi , waache haya mambo ya posho . katika hali ambayo uwiano wa
+kitabu kwa wanafunzi kufikia 1:150 ( kitabu kimoja kwa wanafunzi 150 )
+katika baadhi ya maeneo ya katikati ya jiji la dar es salaam .
+msanii mahiri katika miondoko ya bongo fleva na burudani nyingine .
+taasisi ya sekta binafsi ( tpsf ) , dk . mwakyembe kutangaza kuwataja
+hadharani vigogo wa dawa za kulevya zitavushwa kupitia uwanja wa ndege ,
+kwani wakazi wale walishapatiwa maeneo na wanaishi kwa amani na kwa
+kuhakikisha maslahi ya umma . `` tunataka sekta binafsi iwe mshirika
+mkubwa wa maendeleo ya
+=========================================
+
+TRANSLATION (Google Translate)
+=========================================
+corruption, leave these allowance matters. in which case the ratio of
+book for students up to 1:150 (one book for 150 students)
+in some areas in the center of the city of Dar es Salaam.
+a talented artist in brain movements and other entertainment.
+private sector institute (tpsf), Dr. mwakyembe to announce to name them
+in public, trunks of drugs will be flown through the airport,
+because those residents have been given areas and are living in peace and harmony
+ensure the public interest. ``we want the private sector to be a partner
+the greatest development of
+=========================================
+\end{verbatim}
+\end{center}
+
+\textbf{Analysis}
+
+This paragraph is slightly better than the previous one,
+but it mostly suffers from the same issues;
+incomplete ideas (albeit mostly longer and better)
+and the next sentence is unrelated to the current one.
+
+\newpage
+
+\subsection{Probabilities}
+
+Note: see the source-code for more context.
+
+\begin{center}
+\begin{verbatim}
+UNIGRAM COUNTS AND PROBABILITIES
+===================================
+======
+counts('alisema'):               3700
+P('alisema'):                    0.006863723551476072
+=========================================
+
+
+BIGRAM COUNTS AND PROBABILITIES
+=========================================
+counts('serikali' | 'alisema'):          57
+P('serikali' | 'alisema'):               0.015405405405405406
+verification:                            0.015405405405405406
+=========================================
+
+
+TRIGRAM COUNTS AND PROBABILITIES
+=========================================
+counts('imetenga' | 'alisema serikali'):         1
+P('imetenga' | 'alisema serikali'):              0.017543859649122806
+verification:                                    0.017543859649122806
+=========================================
+\end{verbatim}
+\end{center}
+
+
+\newpage
+\subsection{Perplexity}
+
+\begin{center}
+\begin{verbatim}
+(1) PP(aidha alisema kuwa iwapo serikali):30.80433593077573
+(2) PP(waache kutusifia ili wawaone watanzania):11.604099060939772
+(3) PP(watoto walienda chumbani kunywa sharubati):inf
+\end{verbatim}
+\end{center}
+
+\begin{enumarabic}
+  \item Sentence (3) has the highest perplexity of infinity.
+    This is because the sentence contains a word that does not appear in the training set at all.
+    In fact, looking at the bigram probabilities (run the source-code if interested),
+    it seems a lot of contiguous words in the sentence have zero probability.
+
+  \item Sentence (2) has the lowest perplexity.
+    This is because the sentence was generated using the model.
+    In fact, out of curiosity, I dug into the dataset and discovered that the sentence
+    actually occurs in the dataset (even though I hadn't manually selected it
+    from the dataset).
+  \item Sentence (1), which actually appears in the dataset, does not have the lowest
+    perplexity. This makes me think of two things:
+    [1] It is probably not always a good idea to use perplexity
+    as a measure of how good a sentence is, since some better sentences might
+    have higher perplexity than some worse sentences.
+    [2] Perhaps sentence (2) was generated over sentence (1) because of its lower perplexity.
+\end{enumarabic}
