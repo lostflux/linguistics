@@ -1,0 +1,196 @@
+% define function \sperse that applies \sperse{2}{#1} to its argument
+\newcommand{\sperse}[2]{\multirow{#1}{.2\linewidth}{#2}}
+
+\section{Logistic Regression}~\label{sec:introduction}
+
+I implemented Naive Bayes with Laplace smoothing.
+Here is the model's performance on the provided dev dataset:
+
+\subsection{Performance}
+
+\begin{center}
+\begin{verbatim}
+-------------------------------------------------------------
+CLASS: neg
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+METRICS
+-------
+          PRECISION    RECALL        F1  ACCURACY  SPECIFICITY
+MEASURE   0.843137  0.851485  0.847291     0.845     0.838384
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+CONFUSION MATRIX
+----------------
+                  PREDICTED POSITIVE  PREDICTED NEGATIVE
+ACTUAL POSITIVE                  86                  16
+ACTUAL NEGATIVE                  15                  83
+-------------------------------------------------------------
+
+
+-------------------------------------------------------------
+CLASS: pos
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+METRICS
+-------
+          PRECISION    RECALL       F1  ACCURACY  SPECIFICITY
+MEASURE   0.846939  0.838384  0.84264     0.845     0.851485
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+CONFUSION MATRIX
+----------------
+                  PREDICTED POSITIVE  PREDICTED NEGATIVE
+ACTUAL POSITIVE                  83                  15
+ACTUAL NEGATIVE                  16                  86
+-------------------------------------------------------------
+\end{verbatim}
+\end{center}
+
+\subsection{Notes}
+
+\begin{enumarabic}
+  \item The ``accuracy'' metric is invariant between different classes.
+    Indeed, it's definition does not depend on the class:
+    \begin{align}
+      \text{accuracy} = \frac{\text{all true positives} + \text{all true negatives}}{\text{total}}
+    \end{align}
+  \item While I do print the confusion matrix twice,
+  as you can notice, the values mirror each other.
+  In the context of each class (`pos' or `neg'),
+  ``positive'' in the confusion matrix is that class and ``negative'' is the other class.
+  
+  If you consider the ``pos'' class to be positive,
+  then this is the resulting confusion matrix:
+  
+  \begin{figure}[H]
+    \begin{center}
+      \begin{tabular}{l | c | c}
+                                 & \textbf{Predicted Positive} & \textbf{Predicted Negative} \\
+        \midrule
+        \textbf{Actual Positive} & $72$ & $21$ \\
+        \midrule
+        \textbf{Actual Negative} & $27$ & $80$ \\
+        \midrule     
+      \end{tabular}
+    \end{center}
+  \end{figure}
+\end{enumarabic}
+
+\subsection{Hyperparamenter Tuning}
+
+To find the optimal hyperparameters, I used some grid search with cross-validation.
+The relevant code is provided in \verb|hyperparameters.ipynb|,
+but these were the general trends I noticed:
+
+\begin{enumarabic}
+  \item I seemed to get the best F1 score with a \verb|batch_size| of $3$,
+    $100$ \verb|iterations|, and a \verb|learning_rate| of $0.001$.
+  \item Raising the learning rate, up to $0.1$, seemed to only hasten the initial
+    convergence of the model. Interestingly, though, I would get a slightly worse
+    \verb|F1| score, suggesting that the model might have been missing
+    the global minimum.
+  \item The \verb|batch_size| didn't seem to have any persistent effects
+    once the model had converged. However, a bigger batch size would
+    make the model converge in fewer iterations, but each iteration would take longer.
+  \item Raising the \verb|iterations| above $100$ made the model's loss keep decreasing,
+    but it would attain a worse \verb|F1| score, suggesting that the model was overfitting.
+    Furthermore, when I tried $300$ epochs, the model loss was barely decreasing
+    in the last $100$ epochs:
+    \begin{verbatim}
+      .
+      .
+      .
+      Epoch  287 of  300: 0.01649007628804117
+      Epoch  288 of  300: 0.016417641635814058
+      Epoch  289 of  300: 0.01631446089094162
+      Epoch  290 of  300: 0.016278033478872352
+      Epoch  291 of  300: 0.016310185062016626
+      Epoch  292 of  300: 0.01620338939285947
+      Epoch  293 of  300: 0.01609954278875562
+      Epoch  294 of  300: 0.01596269775796024
+      Epoch  295 of  300: 0.016016895992619
+      Epoch  296 of  300: 0.015972032266260608
+      Epoch  297 of  300: 0.015803267906351986
+      Epoch  298 of  300: 0.015881314335069525
+      Epoch  299 of  300: 0.015842786843816545
+    \end{verbatim}
+\end{enumarabic}
+
+Note: to reuse data across different trials in grid search,
+I added a \verb|reset| method to the classifier that just
+resets the weights and biases to zero so I don't have to
+reinstantiate a new classifier every time.
+
+\newpage
+\subsection{Comparison to Naive Bayes}
+
+Compared to the Naive Bayes model implemented in the previous assignment,
+the logistic regression model is noticeably better:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{l | r | r}
+    \textbf{Metric} & \textbf{Naive Bayes} & \textbf{Logistic Regression} \\
+    \midrule
+    Precision & $0.774194$ & $0.846939$ \\
+    Recall & $0.727273$ & $0.838384$ \\
+    F1 & $0.75$ & $0.84264$ \\
+    Accuracy & $0.76$ & $0.845$ \\
+    Specificity & $0.792079$ & $0.851485$ \\
+    TP & $72$ & $83$ \\
+    TN & $80$ & $86$ \\
+    FP & $27$ & $15$ \\
+    FN & $21$ & $16$ \\
+    \toprule
+  \end{tabular}
+  \caption{Comparison between Naive Bayes and Logistic Regression}
+\end{table}
+
+\vskip 0.2in
+\begin{verbatim}
+-------------------------------------------------------------
+CLASS: pos (Logistic Regression)
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+METRICS
+-------
+          PRECISION    RECALL       F1  ACCURACY  SPECIFICITY
+MEASURE   0.846939  0.838384  0.84264     0.845     0.851485
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+CONFUSION MATRIX
+----------------
+                  PREDICTED POSITIVE  PREDICTED NEGATIVE
+ACTUAL POSITIVE                  83                  15
+ACTUAL NEGATIVE                  16                  86
+-------------------------------------------------------------
+
+
+
+-------------------------------------------------------------
+CLASS: pos (Naive Bayes)
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+METRICS
+-------
+          PRECISION    RECALL    F1  ACCURACY  SPECIFICITY
+MEASURE   0.774194  0.727273  0.75      0.76     0.792079
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+CONFUSION MATRIX
+----------------
+                  PREDICTED POSITIVE  PREDICTED NEGATIVE
+ACTUAL POSITIVE                  72                  21
+ACTUAL NEGATIVE                  27                  80
+-------------------------------------------------------------
+\end{verbatim}
+

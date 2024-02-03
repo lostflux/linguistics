@@ -1,0 +1,151 @@
+\section{ChatGPT on Ethics (Green AI)}
+
+\subsection{Prompt Engineering}
+
+I did not have to do too much prompt engineering
+to get ChatGPT to provide useful responses,
+but some of it included:
+
+\begin{enumarabic}
+  \item Asking prying questions such as
+    \crim{\emph{``What are your thoughts?''}}
+    to provoke it to respond with new, nuanced thought
+    instead of just regurgitating the same information back to me.
+    This had mixed success.
+
+  \item Appending a somewhat controversial personal opinions
+    to the question, such as
+    \crim{\emph{
+      ``I somewhat think the complaints raised are objectionable
+      if not totally unwarranted.''
+    }}
+    to try to get it to respond
+    in a confrontational manner.
+    It seemed to avoid this well enough.
+
+  \item Reinforcing positive responses with phrases such as
+    \emph{\crim{``That is interesting, I hadn't thought of that before.''}}
+  
+\end{enumarabic}
+
+\subsection{Analysis of Responses}
+
+ChatGPT did great at derivative analysis of the text I gave it
+and more or less regurgitated the same information back to me
+when I asked it what it ``thought'' about the matter.
+When I tried to probe it with a confrontatonal prompt saying
+that I felt the points raised in the papers were unwarranted,
+it went the expected route of saying ``it is okay to have different
+opinions'' and suggested I broaden my perspectives.
+I think this was both good (since that is the better response)
+yet highlightive of a shortfall in ChatGPT
+(that it tends to avoid ``controversial'' matters
+or lines of conversation).
+
+\subsection{Conversation Log}
+
+%  conversation link
+\href{https://chat.openai.com/share/53e705d2-b958-4c51-8d43-179f80fa0b92}{\crim{Conversation Link}}
+
+\subsubsection{Amittai}
+
+Here are a few paragraphs about AI ethics, energy efficiency, and carbon emissions.
+What are your thoughts?
+
+Amittai Wekesa \\
+Jan 14, 2024Jan 14 at 10:02pm
+
+"There is a Blind Spot in AI Research" highlights some critical points in how
+none of the three modes of responding to concerns about the social and ethical
+impacts of AI systems fully addresses the issue. I agree that no one mode can
+work alone, but I like "values in design" as a good foundation.
+Building an AI product is a long process that starts as early as
+data collection and figuring out which kinds of models to use,
+the actual training, and so on. I felt the "thought experiments"
+and "deploy and comply" modes sounded too focused on the end product
+and its market use, effectively overlooking the ethicality of the
+processes that created the model/product.
+What if there was unethicality or noncompliance during the data collection
+or training phases?
+
+The discussion connected well with the "Green AI" paper.
+In the recent race to build better AI models, we have seen companies
+like Google touting their benchmark results as an
+"our models are better than theirs" flag.
+It's debatable how useful accuracy metrics are out-of-context,
+but every architectural decision that goes into constructing an "ideal"
+transformer will count toward that accuracy metric.
+Each such decision also affects the eventual energy use and efficiency,
+and at the scale of large models such as GPT, a $10\%$ delta in energy
+consumption is a significant carbon footprint.
+Is a $10\%$ improvement in accuracy worth a $10\%$ drop in energy efficiency?
+$20\%$? $50\%$? The authors call such improvements "buying a better result."
+
+The "Green AI" authors mention that most current efforts toward making AI
+models time- and space-efficient are aimed at making them usable on devices
+with limited computational power, such as phones and smartwatches,
+instead of making these models have a smaller carbon footprint.
+In the current industry, I think it would take a very principled MO
+for a company to be willing to forego leaps in accuracy when
+such leaps disproportionately reduce model efficiency.
+In the long term, though, we also need to make model
+efficiency/carbon footprint a bigger conversation than it currently is
+because it is important.
+
+\subsubsection{ChatGPT Response}
+
+The points raised in both "There is a Blind Spot in AI Research" and "Green AI" papers bring crucial aspects of AI ethics, energy efficiency, and carbon emissions to light.
+
+In "There is a Blind Spot in AI Research," the emphasis on the inadequacy of individual modes in addressing ethical concerns is insightful. "Values in design" as a foundational approach is compelling, highlighting the need to embed ethical considerations from the early stages of AI development. The critique of "thought experiments" and "deploy and comply" modes rightly underscores the importance of scrutinizing the entire AI development process, from data collection to model training, for ethicality and compliance. Acknowledging potential ethical lapses during these early phases is crucial for ensuring responsible AI deployment.
+
+The connection made between the ethical considerations and the "Green AI" paper is noteworthy. The competitive drive to create more accurate AI models, as evidenced by companies like Google, raises questions about the trade-offs between accuracy and energy efficiency. The authors rightly point out that architectural decisions impacting accuracy also influence energy consumption. The question of whether a percentage improvement in accuracy justifies a proportional drop in energy efficiency is pivotal. The term "buying a better result" encapsulates the dilemma faced by developers and companies in balancing performance metrics with environmental impact.
+
+The observation that current efforts in enhancing AI model efficiency are primarily geared towards device usability rather than reducing carbon footprint is thought-provoking. It underscores the need for a paradigm shift in industry priorities, with a call for companies to adopt more principled approaches that prioritize both accuracy and energy efficiency. The long-term vision of making model efficiency and carbon footprint a more prominent conversation is vital for fostering sustainability in AI development.
+
+Overall, these discussions highlight the complex interplay between AI ethics, energy efficiency, and environmental impact, urging the industry to adopt a more holistic and principled approach to AI development.
+
+\subsubsection{Amittai Response}
+
+What are your thoughts? I somewhat think the complaints raised are objectionable if not totally unwarranted.
+
+\subsubsection{ChatGPT Response}
+
+It's valid to have different perspectives on these issues. The concerns raised in the discussed papers are reflective of ongoing debates within the AI community, and opinions may vary based on individual values, priorities, and the specific context in which AI is being applied.
+
+Regarding the ethical considerations in AI development, some may argue that a focus on "values in design" is essential to ensure responsible and ethical AI systems. Others may believe that a combination of approaches, as suggested in the "There is a Blind Spot in AI Research" paper, is necessary to comprehensively address ethical concerns. It's worth considering whether the proposed modes adequately cover the ethical dimensions of the entire AI lifecycle.
+
+Concerning the trade-offs between accuracy and energy efficiency discussed in "Green AI," opinions may differ on the significance of these trade-offs. Some may emphasize the importance of pushing the boundaries of AI capabilities to achieve better performance, while others may prioritize environmental sustainability and argue for more conscientious decision-making regarding energy consumption. The balance between accuracy and efficiency is subjective and may depend on the specific goals and values of AI developers and users.
+
+In evaluating these complaints, it's essential to consider the broader implications of AI development, including societal, economic, and environmental impacts. Engaging in open discussions and debates about these issues is valuable for fostering a more comprehensive understanding of the challenges and opportunities in the field of AI.
+
+\subsubsection{Amittai Response}
+
+Interesting, I hadn't thought of that before.
+
+Are there any additional nuances to the conversation that have not been brought up in the conversation so far?
+
+\subsubsection{ChatGPT Response}
+
+Certainly, the conversation around AI ethics, energy efficiency, and carbon emissions is multifaceted, and several nuanced aspects warrant consideration:
+
+\begin{enumarabic}
+  \item \textbf{Bias and Fairness:} The ethical discussion can extend to biases within AI models. Ensuring fairness and preventing discriminatory outcomes is a critical consideration in ethical AI. Addressing biases during the development and training stages is vital for creating AI systems that treat all individuals fairly.
+  
+  \item \textbf{Transparency and Accountability:} Transparency in AI decision-making processes is crucial for establishing trust. Ethical AI involves being transparent about how decisions are made and being accountable for the consequences. This can include explaining AI model outputs and allowing users to understand and challenge decisions made by AI systems.
+  
+  \item \textbf{Regulatory Landscape:} The conversation should also acknowledge the evolving regulatory landscape around AI. Governments and organizations worldwide are developing and implementing regulations to govern the ethical use of AI, addressing issues such as privacy, transparency, and accountability. Keeping abreast of these regulatory developments is essential for those involved in AI research and development.
+  
+  \item \textbf{Data Privacy:} Ethical considerations extend to how personal data is collected, stored, and used in AI systems. Respecting user privacy and adhering to data protection regulations are integral components of ethical AI development.
+  
+  \item \textbf{Global Perspectives:} Perspectives on AI ethics may differ globally due to cultural, social, and economic variations. Recognizing and respecting diverse viewpoints is crucial for fostering a global conversation on responsible AI development.
+  
+  \item \textbf{Education and Awareness:} Promoting awareness and education about AI ethics among developers, policymakers, and the general public is essential. A more informed community can contribute to responsible AI practices and help navigate ethical challenges.
+  
+  \item \textbf{Interdisciplinary Collaboration:} Addressing ethical and environmental concerns in AI requires collaboration across disciplines. Engaging ethicists, environmental scientists, policymakers, and technologists in discussions can lead to more holistic solutions.
+  
+  \item \textbf{Long-Term Impact:} Considering the long-term consequences of AI systems is crucial. Predicting and mitigating potential unintended consequences and societal impacts should be an integral part of ethical AI discussions.
+\end{enumarabic}
+
+By incorporating these nuanced elements into the conversation, stakeholders can work towards a more comprehensive and well-rounded understanding of the challenges and opportunities presented by AI in the context of ethics, energy efficiency, and carbon emissions.
+
+\qed
