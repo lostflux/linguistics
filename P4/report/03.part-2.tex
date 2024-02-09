@@ -1,0 +1,53 @@
+\section{ASL Finger Spelling with ConvNets}
+
+\subsection{Neural Network Architecture}
+
+% self.layers = nn.Sequential(
+            
+% #? first convolutional layer
+% nn.Conv2d(1, 32, kernel_size=3, stride=1),
+% nn.ReLU(),
+% nn.MaxPool2d(kernel_size=2, stride=2),
+
+% #? second convolutional layer
+% nn.Conv2d(32, 64, kernel_size=3, stride=1),
+% nn.ReLU(),
+% nn.MaxPool2d(kernel_size=2, stride=2),
+
+% #? third convolutional layer
+% nn.Conv2d(64, 64, kernel_size=3, stride=1),
+% nn.ReLU(),
+% nn.MaxPool2d(kernel_size=2, stride=2),
+
+% #? flatten the output
+% nn.Flatten(),
+
+% #? 128-neurons linear layer
+% nn.Linear(64, 128),
+
+% #? relu activation
+% nn.ReLU(),
+
+% #? output layer with <classes> neurons
+% nn.Linear(128, classes)
+% )
+
+The neural network has $3$ convolutional layers, each followed by a
+ReLU activation function and a max-pooling layer.
+
+\begin{enumarabic}
+  \item The first convolutional layer has $32$ output channels and a kernel size of $3$,
+    followed by a \verb|ReLU| layer and a max-pooling layer with a kernel size of $2$.
+    \begin{enumroman}
+      \item \verb|nn.Conv2d(1, 32, kernel_size=3, stride=1)| \\
+        IN: $(1 \times 28 \times 28)$ \\
+        OUT: $(32 \times 28 \times 28)$
+      \item \verb|nn.ReLU()| \\
+        IN: $(32 \times 28 \times 28)$ \\
+        OUT: $(64 \times 28 \times 28)$
+      \item \verb|nn.MaxPool2d(kernel_size=2, stride=2)| \\
+        IN: $(64 \times 28 \times 28)$ \\
+        OUT: $(64 \times 28 \times 28)$
+    \end{enumroman}
+
+\end{enumarabic}
