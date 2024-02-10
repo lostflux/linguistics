@@ -69,7 +69,7 @@
 
 
 % Here you can change the date presented in the paper title
-\date{February 2, 2023}
+\date{February 9, 2023}
 % \date{\today}
 
 %%% Add PDF metadata to help others organize their library
@@ -98,3 +98,43 @@
 \newcommand{\black}{\textcolor{black}}
 \newcommand{\darkgreen}{\textcolor{DarkOliveGreen}}
 \newcommand{\green}{\textcolor{OliveGreen}}
+
+% 
+% Problem Counter
+\newenvironment{problem}[1][]%
+{%
+\ifx&#1&%
+  % #1 is empty
+  \stepcounter{problem}
+\else
+  % #1 is nonempty
+  \setcounter{problem}{#1}
+\fi
+% \setcounter{section}{\value{problem}}
+\setcounter{equation}{0}
+\vspace{.2cm} \noindent {\center  \textbf{\\ Problem \arabic{problem}.\\}} {}~%
+}{%
+% \vspace{.2cm}%
+}
+
+\newcounter{problem}
+\setcounter{problem}{0}
+
+\usepackage{microtype}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\newmdenv[%
+  skipabove=12pt,
+  skipbelow=12pt,
+  innertopmargin=12pt,
+  % leftmargin=-5pt,
+  % rightmargin=-5pt, 
+  innerleftmargin=12pt,
+  innerrightmargin=12pt,
+  innerbottommargin=12pt,
+  backgroundcolor=brown!20,
+  linewidth=0,
+  roundcorner=3pt
+  % no border
+  % linewidth=0pt
+]{answer}%
