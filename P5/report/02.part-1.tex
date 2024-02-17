@@ -1,3 +1,51 @@
+\section{Loss Plot}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/loss-plot.pdf}
+  \caption{Loss Plot}
+  \label{fig:loss-plot}
+\end{figure}
+
+The loss decreases steadily over time as the model learns the alignments
+between the source and target words.
+We also see periodic spikes in the loss, which are likely caused by the
+model learning specific translations that it had not encountered before,
+and the loss eventually drops again as the model generalizes the 
+learned translations to other examples.
+
+% final loss values
+\begin{small}
+\begin{verbatim}
+                                                 .
+                                                 .
+                                                 .
+Epoch:  81 | Train loss: 0.012 | Val loss: 0.095 | Gen: ethay airway onditingcay isway orkingway
+Epoch:  82 | Train loss: 0.006 | Val loss: 0.098 | Gen: ethay airway onditingcay isway orkingway
+Epoch:  83 | Train loss: 0.005 | Val loss: 0.092 | Gen: ethay airway onditiningcay isway orkingway
+Epoch:  84 | Train loss: 0.007 | Val loss: 0.150 | Gen: ethay airway onditiningcay isway orkingway
+Epoch:  85 | Train loss: 0.021 | Val loss: 0.141 | Gen: ethay airway onditiningcay isway orkingway
+Epoch:  86 | Train loss: 0.013 | Val loss: 0.081 | Gen: ethay airway onditiningcay isway orkingway
+Epoch:  87 | Train loss: 0.006 | Val loss: 0.088 | Gen: ethay airway onditingcay isway orkingway
+Epoch:  88 | Train loss: 0.004 | Val loss: 0.082 | Gen: ethay airway onditiningcay isway orkingway
+Epoch:  89 | Train loss: 0.006 | Val loss: 0.091 | Gen: ethay airway onditingcay isway orkingway
+Epoch:  90 | Train loss: 0.003 | Val loss: 0.082 | Gen: ethay airway onditiningcay isway orkingway
+Epoch:  91 | Train loss: 0.003 | Val loss: 0.083 | Gen: ethay airway onditiningcay isway orkingway
+Epoch:  92 | Train loss: 0.002 | Val loss: 0.086 | Gen: ethay airway onditiningcay isway orkingway
+Epoch:  93 | Train loss: 0.002 | Val loss: 0.077 | Gen: ethay airway onditiningcay isway orkingway
+Epoch:  94 | Train loss: 0.002 | Val loss: 0.104 | Gen: ethay airway onditiningcay isway orkingway
+Epoch:  95 | Train loss: 0.009 | Val loss: 0.119 | Gen: ethay airway onditingcay isway orkingway
+Epoch:  96 | Train loss: 0.028 | Val loss: 1.268 | Gen: ethay airway onditiondgway issway orkingway
+Epoch:  97 | Train loss: 0.092 | Val loss: 0.256 | Gen: ethay airway onditingcay isway orkingway
+Epoch:  98 | Train loss: 0.028 | Val loss: 0.112 | Gen: ethay airway onditioningcay isway orkingway
+Epoch:  99 | Train loss: 0.013 | Val loss: 0.110 | Gen: ethay airway onditioningcay isway orkingway
+Epoch: 100 | Train loss: 0.005 | Val loss: 0.101 | Gen: ethay airway onditioningcay isway orkingway
+source:         the air conditioning is working
+translated:     ethay airway onditioningcay isway orkingway
+\end{verbatim}
+\end{small}
+
+\newpage
 \section{Attention Visualizations}
 
 \begin{enumarabic}
