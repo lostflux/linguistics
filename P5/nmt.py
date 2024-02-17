@@ -7,6 +7,13 @@
 # Based on an assignment by Jimmy Ba, Roger Grosse, and Paul Vicol
 # Last modification: 2024/02/08
 #=======================================================================
+
+"""
+Assignment completed by: Amittai Siavava
+CS-72: Computational Linguistics
+Dartmouth College
+"""
+
 import os
 import pickle as pkl
 from collections import defaultdict
@@ -222,7 +229,7 @@ def translate(input_string, encoder, decoder, idx_dict, opts):
 
     return gen_string
 
-def visualize_attention(input_string, encoder, decoder, idx_dict, opts):
+def visualize_attention(input_string, encoder, decoder, idx_dict, opts, save_name=None):
     """Generates a heatmap to show where attention is focused in each decoder
     step.
     """
@@ -274,29 +281,36 @@ def visualize_attention(input_string, encoder, decoder, idx_dict, opts):
     all_attention_weights = attention_weights.data.cpu().numpy()
 
     for i in range(len(all_attention_weights)):
-      attention_weights_matrix = all_attention_weights[i].squeeze()
-      fig = plt.figure()
-      ax = fig.add_subplot(111)
-      cax = ax.matshow(attention_weights_matrix, cmap='bone')
-      fig.colorbar(cax)
+        attention_weights_matrix = all_attention_weights[i].squeeze()
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        cax = ax.matshow(attention_weights_matrix, cmap='bone')
+        fig.colorbar(cax)
 
-      # Set up axes
-      ax.set_xticks(range(len(input_string) + 1))
-      ax.set_yticks(range(len(gen_string) + (1 if produced_end_token else 0)))
-      ax.set_xticklabels(list(input_string) + ['EOS'])
-      ax.set_yticklabels(list(gen_string) + (['EOS'] if produced_end_token else
-                                             []))
+        # Set up axes
+        ax.set_xticks(range(len(input_string) + 1))
+        ax.set_yticks(range(len(gen_string) + (1 if produced_end_token else 0)))
+        ax.set_xticklabels(list(input_string) + ['EOS'])
+        ax.set_yticklabels(list(gen_string) + (['EOS'] if produced_end_token else
+                                                []))
 
-      # Show label at every tick
-      ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
-      ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
+        # Show label at every tick
+        ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
+        ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
 
-      # Add title
-      plt.xlabel('Attention weights to the source sentence in layer {}'
-                 .format(i+1))
-      plt.tight_layout()
-      plt.grid('off')
-      plt.show()
+        # Add title
+        plt.xlabel('Attention weights to the source sentence in layer {}'
+                    .format(i+1))
+        plt.tight_layout()
+        plt.grid('off')
+        
+        # save if save_name is not None
+        if save_name is not None:
+            plt.savefig(f"{save_name}-{i}.png")
+            
+        else:
+            plt.show()
+      
 
     return gen_string
 
@@ -716,7 +730,7 @@ class TransformerDecoder(nn.Module):
             new_contexts, encoder_attention_weights = self.encoder_attentions[i](residual_contexts, annotations, annotations)
             residual_contexts = new_contexts + residual_contexts
             new_contexts = self.attention_mlps[i](residual_contexts)
-            contexts = new_contexts
+            contexts = new_contexts + residual_contexts
             
             ############################
 
@@ -742,7 +756,7 @@ def load_checkpoint(opts):
     return encoder, decoder, idx_dict
 
 if __name__ == '__main__':
-    TRAIN_MODEL = True #True to train model, False to load already-trained model
+    TRAIN_MODEL = False #True to train model, False to load already-trained model
     TEST_SENTENCE = 'the air conditioning is working'
 
     args = AttrDict()
@@ -771,7 +785,16 @@ if __name__ == '__main__':
                                           args.decoder_type)
         args.checkpoint_path = model_name
         transformer_encoder,transformer_decoder,idx_dict = load_checkpoint(args)
-    TEST_WORD_ATTN = 'street'
 
+    
+    TEST_WORD_ATTN = 'street'
+    translated = translate_sentence(TEST_WORD_ATTN, transformer_encoder,
+                                    transformer_decoder, idx_dict, args)
+    print(f"source:\t\t{TEST_WORD_ATTN}\ntranslated:\t{translated}")
     visualize_attention(TEST_WORD_ATTN, transformer_encoder,
                         transformer_decoder, idx_dict, args)
+
+    #? unmute to test with custom words and save attention plots
+    # TEST_WORD_ATTN = input("Enter a word to visualize attention: ")
+    # visualize_attention(TEST_WORD_ATTN, transformer_encoder,
+    #                     transformer_decoder, idx_dict, args, save_name=TEST_WORD_ATTN)
