@@ -2,13 +2,192 @@
 
 \subsection{Generating Haiku}
 
+\begin{enumarabic}
+  \item My first attempt at generating Haikus was to simply generate sequences of words
+    such that the words in the first, second, and third line have $5$, $7$, and $5$ syllables respectively.
+    I came up with this basic CFG:
+
+    \begin{center}
+      \begin{small}
+        \begin{verbatim}
+          S -> SOMETHING1 BREAK SOMETHING2 BREAK SOMETHING3
+            
+          SOMETHING1 -> W1 W4 | W2 W3 | W3 W2 | W4 W1
+          SOMETHING2 -> W3 W2 W3 | W4 W1 W2
+          SOMETHING3 -> W4 W1 | W3 W2 | W1 W4 | W2 W3
+          
+          BREAK -> "|"
+          
+          W1 -> { " | ".join([ f"`{word}'" for word in W1 ]) }
+          W2 -> { " | ".join([ f"`{word}'" for word in W2 ]) }
+          W3 -> { " | ".join([ f"`{word}'" for word in W3 ]) }
+          W4 -> { " | ".join([ f"`{word}'" for word in W4 ]) }
+        \end{verbatim} 
+      \end{small}
+    \end{center}
+
+    \begin{center}
+      \begin{small}
+        \begin{verbatim}
+          # example generated
+          0          : key important | dangerous sister dangerous | important key
+          10000000   : be important | impossible do mother | sister mysterious
+          83000000   : mother remember | appreciate big answer | incredible key
+          118000000  : teacher happy | consider answer teacher | impossible be
+          180000000  : impossible do | impossible big whisper | silly dangerous
+        \end{verbatim} 
+      \end{small}
+    \end{center}
+    The key shortfall of this approach is that \emph{most} generated
+    sentences do not making syntactic (leave alone semantic) sense.
+    And that is to be expected --- proper English sentences have similar
+    structures with nouns, verbs, adjectives, and adverbs in specific
+    positions, and this CFG does not enforce that.
+  \item A first improvement was making the \verb|CFG| generate sentences
+    whose syllable-count add up to the right counts, but also try to retain
+    some semblance of English syntax by enforcing that specific types of words
+    be positioned in specific places in the sentence.
+    The other thing I realized is that Haikus are more likely to contain
+    certain words (describing animals, nature, seasons, etc.) than they are to contain
+    words such as ``important'', ``appreciate'', ``remember'', etc.
+    So I also changed the terminals to be more Haiku-like.
+    This is the CFG I came up with:
+
+    \begin{center}
+      \begin{small}
+        \begin{verbatim}
+          S -> NP-5 BREAK S-7 BREAK S-5
+          
+          NP-5 -> DET-1 ADJ-1 ADJ-2 NOUN-1
+          S-7 -> VP-3 NPOBJ-4
+          S-5 -> S-1 NPOBJ-4
+          
+          VP-3 -> NP-2 VERB-1
+          NPOBJ-4 -> PREP-1 NP-3
+          
+          S-1 -> NOUN-1
+          
+          NP-2 -> DET-1 NOUN-1
+          NP-3 -> DET-1 ADJ-1 NOUN-1 | DET-1 NOUN-2
+          
+          BREAK -> "|"
+          
+          DET-1 -> { " | ".join([ f"'{word}'" for word in DET1 ]) }
+          ADJ-1 -> { " | ".join([ f"'{word}'" for word in ADJ1 ]) }
+          ADJ-2 -> { " | ".join([ f"'{word}'" for word in ADJ2 ]) }
+          PREP-1 -> { " | ".join([ f"'{word}'" for word in PREP1 ]) }
+          CONJ-1 -> { " | ".join([ f"'{word}'" for word in CONJ1 ]) }
+          ADV-1 -> { " | ".join([ f"'{word}'" for word in ADV1 ]) }
+          NOUN-1 -> { " | ".join([ f"'{word}'" for word in NOUN1 ]) }
+          PNOUN-1 -> { " | ".join([ f"'{word}'" for word in PNOUN1 ]) }
+          VERB-1 -> { " | ".join([ f"'{word}'" for word in VERB1 ]) }  
+        \end{verbatim}
+      \end{small}
+    \end{center}
+
+    \begin{center}
+      \begin{small}
+        \begin{verbatim}
+# example generated
+0          : an old silent frog | an frog splash with an old frog | frog with an old frog
+7700000    : an old silent pond | a frog jumps in the old pond | frog of the old frog
+10100000   : an old silent pond | the dew splash in the old pond | world from the old frog
+12900000   : an old silent pond | a world splash of an old dew | dew from an old frog
+24600000   : an old silent world | the frog jumps in the old pond | frog in an old pond
+        \end{verbatim} 
+      \end{small}
+    \end{center}
+    This version shows some notable improvements: some sentences
+    actually make sense! But as expected, the majority of sentences do not.
+    A clear shortfall is also that most Haikus will have some relationship
+    between the lines (similar words, idea continuation, etc.).
+    This CFG does not intentianally enforce that.
+    Consequently, even when each individual line makes sense,
+    most times the haiku as a whole does not.
+    Some successful idea connections that I noticed are:
+    \begin{enumarabic}
+      \item \verb#an old silent pond | a frog jumps into the old pond | frog of the old pond#
+      \item \verb#an old silent world | the frog jumps into the old pond | frog in an old pond#
+    \end{enumarabic}
+
+    I attempted adding more terminal words to the CFG, but that did not improve the quality of the generated haikus
+    --- in fact, it made it worse. Because the range of words was too big, the first sentence
+    would never change (since the generator seemed to combinatorially try all possible variations of sentences,
+    swapping words from the end of the sentence).
+
+    Because of this, I realized that it is impossible to improve the performance
+    without the unrealistic task of manually defining a lot of rules enforcing
+    that \emph{"if this noun is selected in sentence 1, then this verb must be selected in sentence 2
+    and this adjective in sentence 3"}, etc.
+
+    Perhaps having structures such as ``capture groups'' from regular expressions
+    would have made it possible to explicitly reuse words from the first sentence
+    in the second and third sentence and skip the millions of combinations that
+    do not have the desired property.
+
+  \item the favorite $3$ haikus generated that I thought were among the most successful
+    in making sense were:
+    \begin{enumroman}
+      \item \emph{an old silent world | the frog jumps in the old pond | frog in the old pond}
+      \item \emph{the old peaceful pond | the dew splashes in the pond | dew in the old pond}
+      \item \emph{a new peaceful world | the frog splashes in the pond | an old peaceful world}
+    \end{enumroman}
+    Note: the haikus appear similar because I manually reduced the set of words so I can
+    get more interesting variations (when the words were too many, as mentioned above,
+    the generator would barely change the first sentence and parts of the second
+    because there were millions of variations for the last sentence alone).
+    You can reproduce this behavior by un-commenting the commented-out words in the
+    word-sets used in the CFG (see the code notebook).
+\end{enumarabic}
+
 \subsection{Writing an Actual Haiku: incorporating \crim{kigo} and \crim{kireji}}
 
-% how to include kigo and kireji in haiku
-One way to enforce the inclusion of a kigo and kireji in a haiku is to add them as custom symbols in the CFG,
-in the right positions, and defining specific words as terminals for kigo and kireji.
-This way, the haiku generator will always include them in the generated haikus.
+There are several possible ways to enforce the inclusion
+of a \crim{kigo} and \crim{kireji} in a haiku:
 
 \begin{enumarabic}
-  \item 
+  \item Add them as custom symbols in the CFG.
+    This would work especially well if the positioning
+    of the \crim{kigo} and \crim{kireji} is known (e.g. end of sentence $1$
+    and end of sentence $3$ as in the examples).
+    We can then have the \verb|KIGO| and \verb|KIREJI| symbols
+    generate the specific terminals that act as seasonal words
+    and cutting words respectively.
+
+  \item Another way could be to have the CFG generate the haiku
+    with placeholders for the \crim{kigo} and \crim{kireji},
+    and then replace the placeholders with the actual words.
+    This would allow a more complicated substitution scheme,
+    especially if we want the seasonal and cutting words to be
+    particularly relevant to whatever is actually happening in
+    the rest of the haiku.
+    One could argue that this more flexible approach is no longer
+    a CFG, but it could work too.
+  
+  % algorithm
+  \begin{small}
+    \begin{answer}
+      \centering
+      % \begin{minipage}[width=0.6\textwidth]
+        \begin{algorithm}[H]
+          \caption{Algorithm for generating haikus with kigo and kireji}
+          \begin{algorithmic}[1]
+            \State \textbf{Input:} CFG for haikus, kigo, kireji
+            \State \textbf{Output:} Haiku with kigo and kireji
+            \State
+            \State kigo\_words $\gets$ \textsc{get\_kigo\_words}() \Comment{All possible kigo words}
+            \State kireji\_words $\gets$ \textsc{get\_kireji\_words}() \Comment{All possible kireji words}
+            \State \Function{generate\_haiku}{CFG, kigo, kireji}
+            \State haiku $\gets$ CFG.generate()
+            \State kigo $\gets$ \textsc{get\_most\_relevant}(haiku, kigo\_words)
+            \State kireji $\gets$ \textsc{get\_most\_relevant}(haiku, kireji\_words)
+            \State haiku $\gets$ haiku.update(haiku, kigo, kireji)
+            \State \Return haiku
+            \EndFunction
+          \end{algorithmic}
+        \end{algorithm}
+      % \end{minipage}
+    \end{answer}
+  \end{small}
 \end{enumarabic}
+
