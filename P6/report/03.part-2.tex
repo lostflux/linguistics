@@ -140,6 +140,7 @@
     word-sets used in the CFG (see the code notebook).
 \end{enumarabic}
 
+\newpage
 \subsection{Writing an Actual Haiku: incorporating \crim{kigo} and \crim{kireji}}
 
 There are several possible ways to enforce the inclusion
@@ -175,8 +176,8 @@ of a \crim{kigo} and \crim{kireji} in a haiku:
             \State \textbf{Input:} CFG for haikus, kigo, kireji
             \State \textbf{Output:} Haiku with kigo and kireji
             \State
-            \State kigo\_words $\gets$ \textsc{get\_kigo\_words}() \Comment{All possible kigo words}
-            \State kireji\_words $\gets$ \textsc{get\_kireji\_words}() \Comment{All possible kireji words}
+            \State kigo\_words $\gets$ \textsc{get\_kigo\_words}() \Comment{All possible/allowed kigo words}
+            \State kireji\_words $\gets$ \textsc{get\_kireji\_words}() \Comment{All possible/allowed kireji words}
             \State \Function{generate\_haiku}{CFG, kigo, kireji}
             \State haiku $\gets$ CFG.generate()
             \State kigo $\gets$ \textsc{get\_most\_relevant}(haiku, kigo\_words)
